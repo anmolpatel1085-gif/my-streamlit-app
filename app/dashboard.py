@@ -22,8 +22,14 @@ DATA_PATH = 'data/raw/orders.csv'
 
 @st.cache_data
 def load_data(path):
+    # If the data file is missing, `load_orders` will fall back to a small sample.
+    from pathlib import Path as _P
+    exists = _P(path).exists()
     df = load_orders(path)
     df = clean_orders(df)
+    # Notify user in the app when sample data is being used
+    if not exists:
+        st.warning("No `data/raw/orders.csv` found — using built-in sample data. Add your real export to `data/raw/orders.csv` and redeploy for real results.")
     return df
 
 
