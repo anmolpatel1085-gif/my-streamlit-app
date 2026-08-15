@@ -1,0 +1,9 @@
+pandas>=1.5
+numpy
+streamlit
+matplotlib
+seaborn
+altair
+reportlab
+pillow
+pytest
